@@ -1,8 +1,4 @@
-
-
-
 ///////////////////////////////////////////////////-------------------------------------------------------------------------------------------------
-
 
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
@@ -29,30 +25,25 @@ import { ConfettiSection } from "../ConfettiSection/ConfettiSection";
 // For showing notify
 toast.configure();
 
-
 const initialValues = {
-  friends: [
+  guestList: [
     {
-      name: "",
+      firstName: "",
+      lastName: "",
       email: "",
+      phone: "",
+      termsOfService: false,
     },
   ],
 };
-
 
 export const FormSection = () => {
   const [successMessage, setSuccessMessage] = useState(false);
   const [isExploding, setIsExploding] = useState(false);
 
-
-
-
-
   const onSubmit = async (values) => {
     // alert(JSON.stringify(values, null, 2));
-    console.log({values})
-
-
+    console.log({ values });
   };
 
   return (
@@ -140,39 +131,66 @@ export const FormSection = () => {
                           >
                             {({ values }) => (
                               <Form>
-                                <FieldArray name="friends">
+                                <FieldArray name="guestList">
                                   {({ insert, remove, push }) => (
                                     <div>
-                                      {values.friends.length > 0 &&
-                                        values.friends.map(
-                                          (friend, index) => (
-                                            <div key={index}>
-                                              <Grid item xs={6}>
-                                                <Textfield
-                                                  name={`friends.${index}.name`}
-                                                  label="Last Name"
-                                                />
-                                              </Grid>
-                                              <Grid item xs={12}>
-                                                <Textfield
-                                                  name={`friends.${index}.email`}
-                                                  label="Email"
-                                                />
-                                              </Grid>
-                                              <div className="col">
-                                                <button
-                                                  type="button"
-                                                  className="secondary"
-                                                  onClick={() =>
-                                                    remove(index)
-                                                  }
-                                                >
-                                                  X
-                                                </button>
-                                              </div>
-                                            </div>
-                                          )
-                                        )}
+                                      {values.guestList.length > 0 &&
+                                        values.guestList.map((friend, index) => (
+                                          <Grid container spacing={2} key={index}>
+                                            <Grid item xs={6}>
+                                              <Textfield
+
+                                                name={`guestList.${index}.firstName`}
+                                                label="First Name"
+                                              />
+                                            </Grid>
+                                            <Grid item xs={6}>
+                                              <Textfield
+                                                name={`guestList.${index}.lastName`}
+
+                                                label="Last Name"
+                                              />
+                                            </Grid>
+                                            <Grid item xs={12}>
+                                              <Textfield
+                                                name={`guestList.${index}.email`}
+
+                                                label="Email"
+                                              />
+                                            </Grid>
+                                            <Grid item xs={12}>
+                                              <Textfield
+                                                name={`guestList.${index}.phone`}
+
+                                                label="Phone"
+                                              />
+                                            </Grid>
+
+                                            <Grid item xs={12}>
+                                              <Typography
+                                                sx={{
+                                                  textAlign: "left",
+                                                  mt: "1rem",
+                                                  mb: "1rem",
+                                                }}
+                                              >
+                                                Additional information
+                                              </Typography>
+                                            </Grid>
+                                            <Grid
+                                              item
+                                              xs={12}
+                                              sx={{ textAlign: "left" }}
+                                            >
+                                              <Checkbox
+                                                name={`guestList.${index}.termsOfService`}
+
+                                                legend="Terms Of Service"
+                                                label="I agree"
+                                              />
+                                            </Grid>
+                                          </Grid>
+                                        ))}
                                     </div>
                                   )}
                                 </FieldArray>
@@ -198,5 +216,3 @@ export const FormSection = () => {
     </Box>
   );
 };
-
-
