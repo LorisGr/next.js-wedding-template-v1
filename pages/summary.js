@@ -1,8 +1,8 @@
 import React from "react";
 import connectPromise from "../lib/mongodb";
 import { ErrorMessage } from "../src/components/ErrorMessage/ErrorMessage";
-
-import Test from "./test";
+import TestPage from "./test";
+import TestComponent from "../src/components/TestComponent/TestComponent";
 
 import { createContext } from "react";
 
@@ -22,7 +22,8 @@ const Summary = ({ data, error }) => {
         <ErrorMessage message="No data found." />
       ) : (
         <DataContext.Provider value={data}>
-          <Test />
+          {/* <TestPage /> */}
+          <TestComponent/>
         </DataContext.Provider>
       )}
     </>
