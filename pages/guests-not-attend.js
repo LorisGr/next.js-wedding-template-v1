@@ -127,7 +127,6 @@ export default GuestsNotAttend;
 export async function getServerSideProps({ req, res }) {
   const session = getCookie("session", { req, res });
 
-  // check if tes object is falsy, not defined, or empty value
   if (!session) {
     res.writeHead(302, {
       Location: "/login",
@@ -145,8 +144,8 @@ export async function getServerSideProps({ req, res }) {
     }
 
     // Fetch data from MongoDB
-    const db = client.db("testwedingdatabase");
-    const collection = db.collection("userlist");
+    const db = client.db(process.env.NEXT_PUBLIC_DB_NAME);
+    const collection = db.collection(process.env.NEXT_PUBLIC_COLLECTION_NAME);
     const data = await collection.find({}).toArray();
 
     if (!data || !data.length) {

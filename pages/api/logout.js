@@ -47,14 +47,6 @@ export default async function handler(req, res) {
       console.log("DeleteSession success");
     }
     
-    // deleteCookie("sessionId");
-    // const successDeleteUser = await userCollection.deleteOne({
-    //   username,
-    // });
-
-    // if (successDeleteUser) {
-    //   console.log("successDeleteUser", successDeleteUser);
-    // }
 
     return res.status(200).json({ success: true });
 

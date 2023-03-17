@@ -156,8 +156,8 @@ export async function getServerSideProps({ req, res }) {
     }
 
     // Fetch data from MongoDB
-    const db = client.db("testwedingdatabase");
-    const collection = db.collection("userlist");
+    const db = client.db(process.env.NEXT_PUBLIC_DB_NAME);
+    const collection = db.collection(process.env.NEXT_PUBLIC_COLLECTION_NAME);
     const data = await collection.find({}).toArray();
 
     if (!data || !data.length) {

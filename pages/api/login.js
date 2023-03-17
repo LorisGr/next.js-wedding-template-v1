@@ -3,8 +3,6 @@ import connectPromise from "../../lib/mongodb";
 import { setCookie } from "cookies-next";
 
 export default async function handler(req, res) {
-  // new instance of the Cookies class
-
   try {
     // Connect with MongoDB
     const client = await connectPromise;
@@ -23,7 +21,6 @@ export default async function handler(req, res) {
     const userCollection = db.collection("users");
 
     // Check if user exists in the database
-
     const existingUser = await userCollection.findOne({ username });
 
     if (!existingUser) {
@@ -34,7 +31,6 @@ export default async function handler(req, res) {
     }
 
     // Verify the password
-
     const isMatch = await bcrypt.compare(password, existingUser.password);
 
     if (!isMatch) {
@@ -53,6 +49,18 @@ export default async function handler(req, res) {
       sessionId: sessionId,
       userId: existingUser._id,
     };
+
+    // Check if session already exists
+    const existingSession = await sessionCollection.findOne({
+      sessionId: sessionId,
+    });
+
+    if (existingSession) {
+      console.log("Session already exists");
+      return res
+        .status(409)
+        .json({ success: false, message: "Session already exists" });
+    }
 
     await sessionCollection.insertOne(session);
 
