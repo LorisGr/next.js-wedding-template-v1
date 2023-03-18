@@ -15,7 +15,7 @@ const NavItemMobile = () => {
     <>
       {links.map((link) => {
         return (
-          <ListItem key={link.key} disablePadding>
+          <ListItem key={link.href} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
               <Typography
                 component="a"
