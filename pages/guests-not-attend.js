@@ -136,7 +136,7 @@ export async function getServerSideProps({ req, res }) {
   try {
     // Connect with MongoDB
     const client = await connectPromise;
-    // const isConnected = await client.isConnected();
+    const isConnected = await client.isConnected();
 
     if (!isConnected) {
       console.log("MongoDB client is not connected:");

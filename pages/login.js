@@ -1,10 +1,6 @@
 import {
-  AppBar,
   Button,
-  Container,
   Grid,
-  Toolbar,
-  Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState, useEffect } from "react";
@@ -13,20 +9,9 @@ import { setCookie } from "cookies-next";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import TextfieldWrapper from "../src/components/FormSection/FormsUI/Textfield";
-import HomeIcon from "@mui/icons-material/Home";
-import Link from "@mui/material/Link";
-import NextLink from "next/link";
-import { makeStyles } from "@mui/styles";
+import NavigationLoginPage from "../src/components/NavigationLoginPage/NavigationLoginPage";
 
-const useStyles = makeStyles({
-  link: {
-    color: "#FA541A",
-    textDecoration: "none",
-    "&:hover": {
-      textDecoration: "underline",
-    },
-  },
-});
+
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required("Username is required"),
@@ -34,19 +19,19 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginPage = () => {
-  const [isLogging, setIsLogging] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
 
   // redirect
   useEffect(() => {
-    if (isLogging) {
+    if (isLoggedIn) {
       router.push("/invitations");
     }
-  }, [isLogging, router]);
+  }, [isLoggedIn, router]);
 
   const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
     setSubmitting(true);
-    setIsLogging(false);
+    setIsLoggedIn(false);
 
     const dataToSend = {
       username: values.username,
@@ -69,7 +54,7 @@ const LoginPage = () => {
       return;
     }
     if (response.status === 200) {
-      setIsLogging(true);
+      setIsLoggedIn(true);
     }
 
     const data = await response.json();
@@ -79,7 +64,7 @@ const LoginPage = () => {
         maxAge: 30 * 24 * 60 * 60, // 30 days
         path: "/",
       });
-      setIsLogging(true);
+      setIsLoggedIn(true);
     } else {
       console.log(data.message);
     }
@@ -89,7 +74,7 @@ const LoginPage = () => {
 
   return (
     <>
-      <Navigation />
+      <NavigationLoginPage />
       <Box
         sx={{
           display: "flex",
@@ -105,7 +90,7 @@ const LoginPage = () => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ isSubmitting, values }) => (
+          {({ isSubmitting }) => (
             <Form>
               <Grid container maxWidth="sm">
                 <Grid item xs={12} sx={{ pl: "16px", pr: "16px" }}>
@@ -127,13 +112,13 @@ const LoginPage = () => {
                 </Grid>
 
                 <Button
-                  disabled={isLogging}
+                  disabled={isSubmitting}
                   sx={{ width: "100%", ml: "16px", mr: "16px" }}
                   type="submit"
                   variant="contained"
                   color="primary"
                 >
-                  {isLogging ? "Loading..." : "Login"}
+                  {isSubmitting ? "Loading..." : "Login"}
                 </Button>
               </Grid>
             </Form>
@@ -145,40 +130,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
-const Navigation = () => {
-  const classes = useStyles();
-  return (
-    <AppBar sx={{ backgroundColor: "#fcfff7" }} elevation={1} position="static">
-      <Container maxWidth="md">
-        <Toolbar
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            p: "0",
-          }}
-        >
-          <Typography color="primary" variant="h3">
-            E&L
-          </Typography>
-
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              color: "#FA541A",
-            }}
-          >
-            <HomeIcon sx={{ mr: 0.5 }} color="primary" />
-            <Link component={NextLink} href="/" className={classes.link}>
-              
-              Back to Wedding Page
-            </Link>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
-  );
-};
