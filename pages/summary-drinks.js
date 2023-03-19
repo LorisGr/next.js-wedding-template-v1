@@ -1,10 +1,11 @@
 import connectPromise from "../lib/mongodb";
 import React, { useEffect, useState } from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import PieChartDrinks from "../src/components/PieChartDrinks/PieChartDrinks";
-import { ErrorMessage } from "../src/components/ErrorMessage/ErrorMessage";
 import { getCookie } from "cookies-next";
 import LayoutDashboardDesktop from "../src/components/LayoutDashboardDesktop/LayoutDashboardDesktop";
+import ErrorMessage from "../src/components/ErrorMessage/ErrorMessage";
+
 
 const SummaryDrinks = ({ data, error }) => {
   const [userDataDrinks, setUserDataDrinks] = useState([]);

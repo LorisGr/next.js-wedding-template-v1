@@ -4,7 +4,7 @@ import ErrorIcon from "@mui/icons-material/Error";
 import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
 import { Box } from "@mui/system";
 
-export const ErrorMessage = ({ message }) => {
+const ErrorMessage = ({ message }) => {
   return (
     <Box sx={{ display: "flex" }}>
       <SentimentDissatisfiedIcon />
@@ -14,3 +14,5 @@ export const ErrorMessage = ({ message }) => {
     </Box>
   );
 };
+
+export default ErrorMessage;
