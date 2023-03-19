@@ -4,7 +4,7 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import CardDataSummary from "../src/components/CardDataSummary/CardDataSummary";
 import autoTable from "jspdf-autotable";
 import jsPDF from "jspdf";
-import { ErrorMessage } from "../src/components/ErrorMessage/ErrorMessage";
+import ErrorMessage from "../src/components/ErrorMessage/ErrorMessage";
 import { getCookie } from "cookies-next";
 import LayoutDashboardDesktop from "../src/components/LayoutDashboardDesktop/LayoutDashboardDesktop";
 

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from "react";
 import {
   ref,
@@ -75,7 +76,7 @@ function Images({}) {
     } finally {
       setIsLoading(false);
     }
-  }, [imagesListRef]);
+  }, []);
 
   // Handle Dialog
 
