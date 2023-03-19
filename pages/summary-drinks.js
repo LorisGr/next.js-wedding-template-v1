@@ -6,7 +6,6 @@ import { getCookie } from "cookies-next";
 import LayoutDashboardDesktop from "../src/components/LayoutDashboardDesktop/LayoutDashboardDesktop";
 import ErrorMessage from "../src/components/ErrorMessage/ErrorMessage";
 
-
 const SummaryDrinks = ({ data, error }) => {
   const [userDataDrinks, setUserDataDrinks] = useState([]);
 
@@ -185,7 +184,7 @@ export async function getServerSideProps({ req, res }) {
       };
     }
 
-    // to fix error serialized to JSON, MongoDB return _id property as object not STRING
+    // fix error serialized to JSON, MongoDB return _id property as object not STRING
     const jsonData = data.map((item) => {
       item._id = item._id.toString();
       return item;
