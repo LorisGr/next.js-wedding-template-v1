@@ -17,18 +17,9 @@ export default async function handler(req, res) {
     }
 
     const db = client.db("userAccount");
-    const userCollection = db.collection("users");
+
     const sessionCollection = db.collection("session");
 
-    // Check if user exists in the database
-    // const existingUser = await userCollection.findOne({ username });
-
-    // if (!existingUser) {
-    //   console.log(`User "${username}" doesn't exist`);
-    //   return res
-    //     .status(404)
-    //     .json({ success: false, message: "User nor found" });
-    // }
 
     // Check sessionsId exists
     const existingSession = await sessionCollection.findOne({ sessionId });

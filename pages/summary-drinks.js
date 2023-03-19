@@ -128,12 +128,15 @@ export async function getServerSideProps({ req, res }) {
   const session = getCookie("session", { req, res });
 
   if (!session) {
+    // If no session found, redirect to login page
     res.writeHead(302, {
       Location: "/login",
     });
     res.end();
     return { props: {} };
   }
+
+  console.log("session", session);
 
   try {
     // Connect with MongoDB
@@ -149,6 +152,25 @@ export async function getServerSideProps({ req, res }) {
     const db = client.db(process.env.NEXT_PUBLIC_DB_NAME);
     const collection = db.collection(process.env.NEXT_PUBLIC_COLLECTION_NAME);
     const data = await collection.find({}).toArray();
+    // Session and user info
+    const dbUserAccount = client.db(process.env.NEXT_USER_ACCOUNT_DB_NAME);
+    const sessionCollection = dbUserAccount.collection(
+      process.env.NEXT_SESSION_COLLECTION_NAME
+    );
+
+    // Get the user  session corresponding to the sessionId cookie from the database
+    const userSession = await sessionCollection.findOne({ sessionId: session });
+
+    console.log("user", userSession.sessionId);
+    console.log("session", typeof session);
+
+    if (!userSession || userSession.sessionId !== session) {
+      res.writeHead(302, {
+        Location: "/login",
+      });
+      res.end();
+      return { props: {} };
+    }
 
     if (data.length === 0) {
       console.error("Data not found");
