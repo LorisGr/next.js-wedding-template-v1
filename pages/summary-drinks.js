@@ -153,9 +153,9 @@ export async function getServerSideProps({ req, res }) {
     const collection = db.collection(process.env.NEXT_PUBLIC_COLLECTION_NAME);
     const data = await collection.find({}).toArray();
     // Session and user info
-    const dbUserAccount = client.db(process.env.NEXT_USER_ACCOUNT_DB_NAME);
+    const dbUserAccount = client.db(process.env.NEXT_PUBLIC_USER_ACCOUNT_DB_NAME);
     const sessionCollection = dbUserAccount.collection(
-      process.env.NEXT_SESSION_COLLECTION_NAME
+      process.env.NEXT_PUBLIC_SESSION_COLLECTION_NAME
     );
 
     // Get the user  session corresponding to the sessionId cookie from the database
