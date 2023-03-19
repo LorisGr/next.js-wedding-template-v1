@@ -161,6 +161,7 @@ export async function getServerSideProps({ req, res }) {
     return { props: { data: jsonData } };
   } catch (error) {
     console.error(error);
+    
     res.writeHead(302, {
       Location: "/500",
     });

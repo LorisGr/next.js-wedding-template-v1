@@ -9,21 +9,12 @@ import LayoutDashboardDesktop from "../src/components/LayoutDashboardDesktop/Lay
 const SummaryDrinks = ({ data, error }) => {
   const [userDataDrinks, setUserDataDrinks] = useState([]);
 
-  const vodkaAmount = data.filter((person) => {
-    return person.isVodka === true;
-  });
-  const ginAmount = data.filter((person) => {
-    return person.isGin === true;
-  });
-  const whiskyAmount = data.filter((person) => {
-    return person.isWhisky === true;
-  });
-  const beerAmount = data.filter((person) => {
-    return person.isBeer === true;
-  });
-  const isNonAlcoholAmount = data.filter((person) => {
-    return person.isNonAlcohol === true;
-  });
+  const vodkaAmount = data?.filter((person) => person.isVodka === true) || [];
+  const ginAmount = data?.filter((person) => person.isGin === true) || [];
+  const whiskyAmount = data?.filter((person) => person.isWhisky === true) || [];
+  const beerAmount = data?.filter((person) => person.isBeer === true) || [];
+  const isNonAlcoholAmount =
+    data?.filter((person) => person.isNonAlcohol === true) || [];
 
   useEffect(() => {
     setUserDataDrinks([
@@ -88,17 +79,15 @@ const SummaryDrinks = ({ data, error }) => {
     ],
   };
 
-  console.log("userDataDrink", userDataDrinks);
   return (
     <>
-      {error?.status === 500 ? (
-        <ErrorMessage message="Sorry, there was a problem with the server. Please try again later." />
-      ) : error?.status === 400 ? (
-        <ErrorMessage message="Sorry, there was a problem with your request. Please try again later." />
-      ) : error ? (
-        <ErrorMessage message="Sorry, there was a problem fetching the data. Please try again later." />
-      ) : data === null ? (
-        <ErrorMessage message="No data found." />
+      {error ? (
+        <ErrorMessage
+          message={
+            error.message ||
+            "Oops! Something went wrong. Please try again later."
+          }
+        />
       ) : (
         <LayoutDashboardDesktop>
           <Typography
@@ -152,6 +141,7 @@ export async function getServerSideProps({ req, res }) {
     const isConnected = await client.isConnected();
 
     if (!isConnected) {
+      console.log("MongoDB client is not connected");
       throw new Error("MongoDB client is not connected");
     }
 
@@ -160,8 +150,16 @@ export async function getServerSideProps({ req, res }) {
     const collection = db.collection(process.env.NEXT_PUBLIC_COLLECTION_NAME);
     const data = await collection.find({}).toArray();
 
-    if (!data || !data.length) {
-      return { props: { error: { status: 400 } } };
+    if (data.length === 0) {
+      console.error("Data not found");
+      return {
+        props: {
+          error: {
+            message: "Oops! Something went wrong. Please try again later.",
+            status: error?.response?.status || 404,
+          },
+        },
+      };
     }
 
     // to fix error serialized to JSON, MongoDB return _id property as object not STRING
@@ -173,6 +171,14 @@ export async function getServerSideProps({ req, res }) {
     return { props: { data: jsonData } };
   } catch (error) {
     console.error(error);
-    return { props: { error: { status: 500 } } };
+    return {
+      props: {
+        error: {
+          message:
+            "Internal Server Error. Something went wrong. Please try again later",
+          status: error?.response?.status || 500,
+        },
+      },
+    };
   }
 }
