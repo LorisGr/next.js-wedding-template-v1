@@ -22,7 +22,7 @@ const ErrorMessage = ({ message }) => {
       >
         <SentimentDissatisfiedIcon />
         <Typography sx={{ ml: "10px" }} variant="h5">
-          {message}
+          {message && message.toString()}
         </Typography>
       </Box>
     </Box>

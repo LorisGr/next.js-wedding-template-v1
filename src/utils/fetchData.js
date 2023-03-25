@@ -7,7 +7,7 @@ export default async function fetchData(client) {
   if (!data || data.length === 0) {
     console.error("Data not found");
     throw new Error(
-      "Oops! Something went wrong. Data not found Please try again later."
+      "Oops! Something went wrong. Data not found. Please try again later."
     );
   }
 

@@ -135,6 +135,12 @@ export async function getServerSideProps({ req, res }) {
   } catch (error) {
     console.error(error);
 
-    return { props: { error: error.message || "Something went wrong" } };
+    return {
+      props: {
+        error: {
+          message: error.message || "Something went wrong",
+        },
+      },
+    };
   }
 }

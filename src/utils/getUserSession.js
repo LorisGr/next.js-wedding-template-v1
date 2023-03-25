@@ -7,8 +7,11 @@ export default async function getUserSession(client, session) {
   const userSession = await sessionCollection.findOne({ sessionId: session });
 
   if (!userSession || userSession.sessionId !== session) {
-    throw new Error(
+    console.log(
       "User session not found or session ID does not match cookie."
+    );
+    throw new Error(
+        "Oops! We were unable to find your. Please try logging in again."
     );
   }
 
