@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Box, Typography } from "@mui/material";
 import PieChartDrinks from "../src/components/PieChartDrinks/PieChartDrinks";
 import LayoutDashboardDesktop from "../src/components/LayoutDashboardDesktop/LayoutDashboardDesktop";
@@ -10,13 +10,28 @@ import getUserSession from "../src/utils/getUserSession";
 
 const SummaryDrinks = ({ data, error }) => {
   const [userDataDrinks, setUserDataDrinks] = useState([]);
-  console.log(error);
-  const vodkaAmount = data?.filter((person) => person.isVodka === true) || [];
-  const ginAmount = data?.filter((person) => person.isGin === true) || [];
-  const whiskyAmount = data?.filter((person) => person.isWhisky === true) || [];
-  const beerAmount = data?.filter((person) => person.isBeer === true) || [];
-  const isNonAlcoholAmount =
-    data?.filter((person) => person.isNonAlcohol === true) || [];
+
+  //used useMemo to memoize the results of a function call.
+  const vodkaAmount = useMemo(
+    () => data?.filter((person) => person.isVodka === true) || [],
+    [data]
+  );
+  const ginAmount = useMemo(
+    () => data?.filter((person) => person.isGin === true) || [],
+    [data]
+  );
+  const whiskyAmount = useMemo(
+    () => data?.filter((person) => person.isWhisky === true) || [],
+    [data]
+  );
+  const beerAmount = useMemo(
+    () => data?.filter((person) => person.isBeer === true) || [],
+    [data]
+  );
+  const isNonAlcoholAmount = useMemo(
+    () => data?.filter((person) => person.isNonAlcohol === true) || [],
+    [data]
+  );
 
   useEffect(() => {
     setUserDataDrinks([

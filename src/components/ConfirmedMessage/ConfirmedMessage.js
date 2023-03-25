@@ -13,8 +13,8 @@ export const ConfirmedMessage = ({ isComing }) => {
             sx={{
               pt: "4rem",
               pb: "4rem",
-              pl: { xs: "0", md: "2rem" },
-              pr: { xs: "0", md: "2rem" },
+              pl: { xs: "0.8rem", md: "2rem" },
+              pr: { xs: "0.8rem", md: "2rem" },
             }}
           >
             <Typography
