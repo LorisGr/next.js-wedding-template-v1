@@ -106,7 +106,14 @@ const NavBarDetails = ({ hideBreadcrumbs = false, isSmallScreen }) => {
           <div className={styles.breadcrumb}>
             {!isSmallScreen ? (
               <Breadcrumbs
-                sx={{ fontSize: "14px", color: "primary.main" }}
+                sx={{
+                  fontSize: "18px",
+                  color: "secondary.main",
+                  ml: { xs: "10", sm: ".5rem", md: "1rem", lg: "2rem" },
+                  "& a": {
+                    cursor: "default",
+                  },
+                }}
                 separator={<ArrowForwardIcon fontSize="small" />}
                 aria-label="breadcrumb"
               >

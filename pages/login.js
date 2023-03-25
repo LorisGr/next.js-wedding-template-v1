@@ -113,13 +113,13 @@ const LoginPage = () => {
                 </Grid>
 
                 <Button
-                  disabled={isSubmitting}
+                  disabled={isLoggedIn}
                   sx={{ width: "100%", ml: "16px", mr: "16px" }}
                   type="submit"
                   variant="contained"
                   color="primary"
                 >
-                  {isSubmitting ? "Loading..." : "Login"}
+                  {isLoggedIn ? "Loading..." : "Login"}
                 </Button>
               </Grid>
             </Form>
