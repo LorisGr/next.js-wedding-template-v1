@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState, useEffect, useMemo } from "react";
 import { Box, Typography } from "@mui/material";
 import BarChartFoodAllergy from "../src/components/BarChartFoodAllergy/BarChartFoodAllergy";
 import LayoutDashboardDesktop from "../src/components/LayoutDashboardDesktop/LayoutDashboardDesktop";
@@ -12,21 +11,18 @@ import getUserSession from "../src/utils/getUserSession";
 const SummaryFoodAllergy = ({ data, error }) => {
   const [userDataAllergyFood, setUserDataAllergyFood] = useState([]);
 
-  const peanutsPeopleAllergies = data
-    ? data.filter((person) => {
-        return person.isPeanuts === true;
-      })
-    : [];
-  const eggsPeopleAllergies = data
-    ? data.filter((person) => {
-        return person.isEggs === true;
-      })
-    : [];
-  const nutsPeopleAllergies = data
-    ? data.filter((person) => {
-        return person.isNuts === true;
-      })
-    : [];
+  const peanutsPeopleAllergies = useMemo(
+    () => data?.filter((person) => person.isPeanuts === true) || [],
+    [data]
+  );
+  const eggsPeopleAllergies = useMemo(
+    () => data?.filter((person) => person.isEggs === true) || [],
+    [data]
+  );
+  const nutsPeopleAllergies = useMemo(
+    () => data?.filter((person) => person.isNuts === true) || [],
+    [data]
+  );
 
   useEffect(() => {
     setUserDataAllergyFood([
