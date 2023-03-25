@@ -12,15 +12,6 @@ const Custom404 = () => {
       <NextLink href="/" passHref>
         <a className="link">Go back to the main page</a>
       </NextLink>
-
-      {/* Doesn't work the styles from mui  */}
-      {/* <Link
-        sx={{ textDecoration: "none", color: "#0021F5" }}
-        href="/"
-        component={NextLink}
-      >
-        Go back to the main page
-      </Link> */}
     </div>
   );
 };

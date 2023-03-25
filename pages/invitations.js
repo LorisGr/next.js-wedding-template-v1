@@ -1,51 +1,61 @@
-import connectPromise from "../lib/mongodb";
 import React from "react";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import CardDataSummary from "../src/components/CardDataSummary/CardDataSummary";
-import autoTable from "jspdf-autotable";
 import jsPDF from "jspdf";
-import ErrorMessage from "../src/components/ErrorMessage/ErrorMessage";
-import { getCookie } from "cookies-next";
 import LayoutDashboardDesktop from "../src/components/LayoutDashboardDesktop/LayoutDashboardDesktop";
+import ErrorMessage from "../src/components/ErrorMessage/ErrorMessage";
+import getSession from "../src/utils/getSession";
+import connectToMongoDB from "../src/utils/connectToMongoDB";
+import fetchData from "../src/utils/fetchData";
+import getUserSession from "../src/utils/getUserSession";
 
 const amountPeople = 100;
 
 const Invitations = ({ data, error }) => {
   // How many people is coming who answer Yes
-  const comingGuests = data.filter((guest) => guest.isComing === "Yes");
+  const comingGuests = data
+  ? data.filter((guest) => guest.isComing === "Yes")  : [];
 
   // How many people is coming plus with extra person
-  const confirmedPeopleWhoComingAndWithExtraPerson = data.filter((person) => {
-    return person.isWithCompanion === true && person.isComing === "Yes";
-  });
+  const confirmedPeopleWhoComingAndWithExtraPerson = data
+    ? data.filter((person) => {
+        return person.isWithCompanion === true && person.isComing === "Yes";
+      })
+    : [];
 
   // console.log("extra", confirmedPeopleWhoComingAndWithExtraPerson);
 
-  const confirmedPeopleWhoComingAlone = data.filter((person) => {
-    return person.isWithCompanion === false && person.isComing === "Yes";
-  });
+  const confirmedPeopleWhoComingAlone = data
+    ? data.filter((person) => {
+        return person.isWithCompanion === false && person.isComing === "Yes";
+      })
+    : [];
 
   // console.log("coming but alone", confirmedPeopleWhoComingAlone);
 
   // How many people is not coming
-  const amountNotComingPeople = data.filter((person) => {
-    return person.isComing === "No";
-  });
+  const amountNotComingPeople = data
+    ? data.filter((person) => {
+        return person.isComing === "No";
+      })
+    : [];
 
   const amountConfirmedPeopleWhoComingAloneOrWithExtraPerson =
-    Number(confirmedPeopleWhoComingAndWithExtraPerson.length * 2) +
-    Number(confirmedPeopleWhoComingAlone.length);
+    Number(confirmedPeopleWhoComingAndWithExtraPerson?.length * 2) +
+    Number(confirmedPeopleWhoComingAlone?.length);
 
   // waiting for answer
   const amountPendingPeople =
     amountPeople -
-    Number(comingGuests.length) -
-    Number(amountNotComingPeople.length);
+    Number(comingGuests?.length) -
+    Number(amountNotComingPeople?.length);
 
   // Number of Children under  3
-  const numberChildren = data.filter((person) => {
-    return person.isWithChildren === true;
-  });
+  const numberChildren = data
+    ? data.filter((person) => {
+        return person.isWithChildren === true;
+      })
+    : [];
 
   const numberChildrenUnder3 = numberChildren.map((child) => {
     return child.amountKids;
@@ -116,14 +126,8 @@ const Invitations = ({ data, error }) => {
 
   return (
     <>
-      {error?.status === 500 ? (
-        <ErrorMessage message="Sorry, there was a problem with the server. Please try again later." />
-      ) : error?.status === 400 ? (
-        <ErrorMessage message="Sorry, there was a problem with your request. Please try again later." />
-      ) : error ? (
-        <ErrorMessage message="Sorry, there was a problem fetching the data. Please try again later." />
-      ) : data === null ? (
-        <ErrorMessage message="No data found." />
+      {error ? (
+        <ErrorMessage message={error.message} />
       ) : (
         <LayoutDashboardDesktop>
           <Box
@@ -224,44 +228,25 @@ const Invitations = ({ data, error }) => {
 export default Invitations;
 
 export async function getServerSideProps({ req, res }) {
-  const session = getCookie("session", { req, res });
-
-  // check if tes object is falsy, not defined, or empty value
-  if (!session) {
-    res.writeHead(302, {
-      Location: "/login",
-    });
-    res.end();
-    return { props: {} };
-  }
-
   try {
-    // Connect with MongoDB
-    const client = await connectPromise;
-    const isConnected = await client.isConnected();
+    const session = await getSession(req, res);
 
-    if (!isConnected) {
-      throw new Error("MongoDB client is not connected");
-    }
+    const client = await connectToMongoDB();
 
-    // Fetch data from MongoDB
-    const db = client.db(process.env.NEXT_PUBLIC_DB_NAME);
-    const collection = db.collection(process.env.NEXT_PUBLIC_COLLECTION_NAME);
-    const data = await collection.find({}).toArray();
+    const jsonData = await fetchData(client);
 
-    if (!data || !data.length) {
-      return { props: { error: { status: 400 } } };
-    }
-
-    // to fix error serialized to JSON, MongoDB return _id property as object not STRING
-    const jsonData = data.map((item) => {
-      item._id = item._id.toString();
-      return item;
-    });
+    const userSession = await getUserSession(client, session);
 
     return { props: { data: jsonData } };
   } catch (error) {
     console.error(error);
-    return { props: { error: { status: 500 } } };
+
+    return {
+      props: {
+        error: {
+          message: error.message || "Something went wrong",
+        },
+      },
+    };
   }
 }

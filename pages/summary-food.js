@@ -1,23 +1,32 @@
-import connectPromise from "../lib/mongodb";
 import React, { useState, useEffect } from "react";
-import { Box, Grid, Typography } from "@mui/material";
+
+import { Box, Typography } from "@mui/material";
 import BarChartFoodAllergy from "../src/components/BarChartFoodAllergy/BarChartFoodAllergy";
-import ErrorMessage from "../src/components/ErrorMessage/ErrorMessage";
-import { getCookie } from "cookies-next";
 import LayoutDashboardDesktop from "../src/components/LayoutDashboardDesktop/LayoutDashboardDesktop";
+import ErrorMessage from "../src/components/ErrorMessage/ErrorMessage";
+import getSession from "../src/utils/getSession";
+import connectToMongoDB from "../src/utils/connectToMongoDB";
+import fetchData from "../src/utils/fetchData";
+import getUserSession from "../src/utils/getUserSession";
 
 const SummaryFoodAllergy = ({ data, error }) => {
   const [userDataAllergyFood, setUserDataAllergyFood] = useState([]);
 
-  const peanutsPeopleAllergies = data?.filter((person) => {
-    return person.isPeanuts === true;
-  });
-  const eggsPeopleAllergies = data?.filter((person) => {
-    return person.isEggs === true;
-  });
-  const nutsPeopleAllergies = data?.filter((person) => {
-    return person.isNuts === true;
-  });
+  const peanutsPeopleAllergies = data
+    ? data.filter((person) => {
+        return person.isPeanuts === true;
+      })
+    : [];
+  const eggsPeopleAllergies = data
+    ? data.filter((person) => {
+        return person.isEggs === true;
+      })
+    : [];
+  const nutsPeopleAllergies = data
+    ? data.filter((person) => {
+        return person.isNuts === true;
+      })
+    : [];
 
   useEffect(() => {
     setUserDataAllergyFood([
@@ -72,14 +81,8 @@ const SummaryFoodAllergy = ({ data, error }) => {
 
   return (
     <>
-      {error?.status === 500 ? (
-        <ErrorMessage message="Sorry, there was a problem with the server. Please try again later." />
-      ) : error?.status === 400 ? (
-        <ErrorMessage message="Sorry, there was a problem with your request. Please try again later." />
-      ) : error ? (
-        <ErrorMessage message="Sorry, there was a problem fetching the data. Please try again later." />
-      ) : data === null ? (
-        <ErrorMessage message="No data found." />
+      {error ? (
+        <ErrorMessage message={error.message} />
       ) : (
         <LayoutDashboardDesktop>
           <Typography
@@ -116,42 +119,25 @@ const SummaryFoodAllergy = ({ data, error }) => {
 export default SummaryFoodAllergy;
 
 export async function getServerSideProps({ req, res }) {
-  const session = getCookie("session", { req, res });
-
-  if (!session) {
-    res.writeHead(302, {
-      Location: "/login",
-    });
-    res.end();
-    return { props: {} };
-  }
   try {
-    // Connect with MongoDB
-    const client = await connectPromise;
-    const isConnected = await client.isConnected();
+    const session = await getSession(req, res);
 
-    if (!isConnected) {
-      throw new Error("MongoDB client is not connected");
-    }
+    const client = await connectToMongoDB();
 
-    // Fetch data from MongoDB
-    const db = client.db(process.env.NEXT_PUBLIC_DB_NAME);
-    const collection = db.collection(process.env.NEXT_PUBLIC_COLLECTION_NAME);
-    const data = await collection.find({}).toArray();
+    const jsonData = await fetchData(client);
 
-    if (!data || !data.length) {
-      return { props: { error: { status: 400 } } };
-    }
-
-    // to fix error serialized to JSON, MongoDB return _id property as object not STRING
-    const jsonData = data.map((item) => {
-      item._id = item._id.toString();
-      return item;
-    });
+    const userSession = await getUserSession(client, session);
 
     return { props: { data: jsonData } };
   } catch (error) {
     console.error(error);
-    return { props: { error: { status: 500 } } };
+
+    return {
+      props: {
+        error: {
+          message: error.message || "Something went wrong",
+        },
+      },
+    };
   }
 }
