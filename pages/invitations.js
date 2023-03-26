@@ -1,20 +1,21 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import CardDataSummary from "../src/components/CardDataSummary/CardDataSummary";
-import jsPDF from "jspdf";
 import LayoutDashboardDesktop from "../src/components/LayoutDashboardDesktop/LayoutDashboardDesktop";
 import ErrorMessage from "../src/components/ErrorMessage/ErrorMessage";
 import getSession from "../src/utils/getSession";
 import connectToMongoDB from "../src/utils/connectToMongoDB";
 import fetchData from "../src/utils/fetchData";
 import getUserSession from "../src/utils/getUserSession";
+import generatePDF from "../src/utils/generatePDF";
 
 const amountPeople = 100;
 
 const Invitations = ({ data, error }) => {
   // How many people is coming who answer Yes
   const comingGuests = data
-  ? data.filter((guest) => guest.isComing === "Yes")  : [];
+    ? data.filter((guest) => guest.isComing === "Yes")
+    : [];
 
   // How many people is coming plus with extra person
   const confirmedPeopleWhoComingAndWithExtraPerson = data
@@ -65,7 +66,7 @@ const Invitations = ({ data, error }) => {
     return Number(prev) + Number(curr);
   }, 0);
 
-  //// Number of Children above 3
+  //Number of Children above 3
   const numberChildrenOver3 = numberChildren.map((child) => {
     return child.amountTeenagers;
   });
@@ -73,56 +74,6 @@ const Invitations = ({ data, error }) => {
   const sumChildrenAbove3 = numberChildrenOver3.reduce((prev, curr) => {
     return Number(prev) + Number(curr);
   }, 0);
-
-  // PDF
-  const generatePDF = () => {
-    try {
-      // create a new pdf document
-      const doc = new jsPDF();
-
-      doc.text(20, 20, "Wedding Guest Invitation Summary");
-
-      var data = [
-        [
-          "Number of confirmed adult guests and their companions",
-          amountConfirmedPeopleWhoComingAloneOrWithExtraPerson,
-        ],
-        [
-          "Number of confirmed adult guests who will not be attending",
-          amountNotComingPeople.length,
-        ],
-        ["Number of confirmed guests under the age of 3", sumChildrenUnder3],
-        ["Number of confirmed guests aged 3 and over", sumChildrenAbove3],
-      ];
-
-      var columns = ["Data", "Value"];
-
-      var options = {
-        startY: 30,
-        head: [columns],
-        body: data,
-      };
-
-      doc.autoTable(options);
-
-      var today = new Date();
-      var date =
-        today.getFullYear() +
-        "-" +
-        (today.getMonth() + 1) +
-        "-" +
-        today.getDate();
-      doc.text(80, 10, "Date: " + date);
-      // save the pdf
-      doc.save("file.pdf");
-    } catch (error) {
-      const body = {
-        log: "generatePdf",
-        errorMessage: error.message,
-      };
-      logFetch(body);
-    }
-  };
 
   return (
     <>
@@ -157,7 +108,7 @@ const Invitations = ({ data, error }) => {
               </Typography>
               <Button
                 sx={{ height: "40px", mb: { xs: "30px", sm: "0" } }}
-                onClick={generatePDF}
+                onClick={() => generatePDF(data)}
                 variant="contained"
                 color="secondary"
               >
