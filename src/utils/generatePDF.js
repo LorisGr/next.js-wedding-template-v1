@@ -73,6 +73,19 @@ const generatePDF = (data) => {
       startY: 30,
       head: [columns],
       body: dataTable,
+      theme: "plain",
+      headStyles: {
+        fillColor: [0, 0, 0],
+        textColor: [255, 255, 255],
+        fontStyle: "bold",
+        halign: "center",
+      },
+      bodyStyles: {
+        textColor: [0, 0, 0],
+      },
+      alternateRowStyles: {
+        fillColor: [245, 245, 245],
+      },
     };
 
     doc.autoTable(options);
