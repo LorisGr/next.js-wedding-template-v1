@@ -75,6 +75,23 @@ const Invitations = ({ data, error }) => {
     return Number(prev) + Number(curr);
   }, 0);
 
+
+    //Transport
+    const totalFamilyMembers = {
+      oneWayTotal: data
+        .filter((people) => people.transportType === "oneWayTransport")
+        .reduce((acc, curr) => acc + parseInt(curr.totalFamilyMember), 0),
+      roundTotal: data
+        .filter((people) => people.transportType === "roundTransport")
+        .reduce((acc, curr) => acc + parseInt(curr.totalFamilyMember), 0),
+      onlyReturnTotal: data
+        .filter((people) => people.transportType === "onlyReturnTransport")
+        .reduce((acc, curr) => acc + parseInt(curr.totalFamilyMember), 0),
+      noNeedTotal: data
+        .filter((people) => people.transportType === "noNeedTransport")
+        .reduce((acc, curr) => acc + parseInt(curr.totalFamilyMember), 0),
+    };
+
   return (
     <>
       {error ? (
@@ -166,6 +183,46 @@ const Invitations = ({ data, error }) => {
                   color="error"
                   icon={"ic:baseline-pending-actions"}
                   colorIcon="#FF3366"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6} md={3}>
+                <CardDataSummary
+                  title="One Way Transport"
+                  subTitle="Number of guests who need one way transport"
+                  total={totalFamilyMembers.oneWayTotal}
+                  color="primary"
+                  icon="mdi:bus"
+                  colorIcon="#20A4F3"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6} md={3}>
+                <CardDataSummary
+                  title="Round Transport"
+                  subTitle="Number of guests who need round transport"
+                  total={totalFamilyMembers.roundTotal}
+                  color="secondary"
+                  icon="mdi:bus-double-decker"
+                  colorIcon="#F36F20"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6} md={3}>
+                <CardDataSummary
+                  title="Only Return Transport"
+                  subTitle="Number of guests who need only return transport"
+                  total={totalFamilyMembers.onlyReturnTotal}
+                  color="warning"
+                  icon="mdi:bus-clock"
+                  colorIcon="#F3C220"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6} md={3}>
+                <CardDataSummary
+                  title="No Need Transport"
+                  subTitle="Number of guests who do not need transport"
+                  total={totalFamilyMembers.noNeedTotal}
+                  color="info"
+                  icon="mdi:car"
+                  colorIcon="#011627"
                 />
               </Grid>
             </Grid>

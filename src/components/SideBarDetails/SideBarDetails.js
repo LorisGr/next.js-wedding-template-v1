@@ -4,6 +4,7 @@ import NavMenuSidebar from "../NavMenuSidebar/NavMenuSidebar";
 import MarkAsUnreadIcon from "@mui/icons-material/MarkAsUnread";
 import LocalBarIcon from "@mui/icons-material/LocalBar";
 import GroupIcon from "@mui/icons-material/Group";
+import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
 import { useRouter } from "next/router";
 
 const SideBarDetails = ({ isSmallScreen }) => {
@@ -51,6 +52,17 @@ const SideBarDetails = ({ isSmallScreen }) => {
           {
             label: "Not-Attending",
             href: `/guests-not-attend`,
+          },
+        ]}
+      />
+            <NavMenuSidebar
+        isSmallScreen={isSmallScreen}
+        title="Transport"
+        icon={<DirectionsBusIcon sx={{ mr: "10px" }} />}
+        subMenuItems={[
+          {
+            label: "Travel options",
+            href: `/summary-transport`,
           },
         ]}
       />

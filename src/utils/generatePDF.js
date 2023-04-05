@@ -42,6 +42,22 @@ const generatePDF = (data) => {
     const eggsPeopleAllergies = data.filter((person) => person.isEggs);
     const nutsPeopleAllergies = data.filter((person) => person.isNuts);
 
+    //Transport
+    const totalFamilyMembers = {
+      oneWayTotal: data
+        .filter((people) => people.transportType === "oneWayTransport")
+        .reduce((acc, curr) => acc + parseInt(curr.totalFamilyMember), 0),
+      roundTotal: data
+        .filter((people) => people.transportType === "roundTransport")
+        .reduce((acc, curr) => acc + parseInt(curr.totalFamilyMember), 0),
+      onlyReturnTotal: data
+        .filter((people) => people.transportType === "onlyReturnTransport")
+        .reduce((acc, curr) => acc + parseInt(curr.totalFamilyMember), 0),
+      noNeedTotal: data
+        .filter((people) => people.transportType === "noNeedTransport")
+        .reduce((acc, curr) => acc + parseInt(curr.totalFamilyMember), 0),
+    };
+
     const dataTable = [
       [
         "Number of confirmed adult guests and their companions",
@@ -65,6 +81,22 @@ const generatePDF = (data) => {
       ["Number of guests with peanut allergies", peanutsPeopleAllergies.length],
       ["Number of guests with egg allergies", eggsPeopleAllergies.length],
       ["Number of guests with nut allergies", nutsPeopleAllergies.length],
+      [
+        "Number of guests who require one-way transport",
+        totalFamilyMembers.oneWayTotal,
+      ],
+      [
+        "Number of guests who require round-trip transport",
+        totalFamilyMembers.roundTotal,
+      ],
+      [
+        "Number of guests who require only return transport",
+        totalFamilyMembers.onlyReturnTotal,
+      ],
+      [
+        "Number of guests who do not require transport",
+        totalFamilyMembers.noNeedTotal,
+      ],
     ];
 
     const columns = ["Description", "Quantity"];

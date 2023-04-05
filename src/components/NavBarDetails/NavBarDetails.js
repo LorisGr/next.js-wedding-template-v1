@@ -76,6 +76,11 @@ const NavBarDetails = ({ hideBreadcrumbs = false, isSmallScreen }) => {
       summaryLinkText = "List of guests";
       secondLinkText = "Attending";
       break;
+    case `/summary-transport`:
+      summaryLinkHref = `/summary-transport`;
+      summaryLinkText = "Transport";
+      secondLinkText = "Travel options";
+      break;
   }
 
   const redirectToFistSubmenu = (event, secondLinkText) => {
@@ -96,6 +101,9 @@ const NavBarDetails = ({ hideBreadcrumbs = false, isSmallScreen }) => {
         break;
       case "Attending":
         router.push(`confirmed-guest`);
+        break;
+      case "Travel options":
+        router.push(`summary-transport`);
         break;
     }
   };

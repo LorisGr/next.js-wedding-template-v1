@@ -106,6 +106,8 @@ export const FormSection = () => {
       isWithCompanion: values.isWithCompanion,
       firstNameCompanion: values.firstNameCompanion,
       lastNameCompanion: values.lastNameCompanion,
+
+      transportType: values.transportType,
     };
 
     await fetch("/api/user", {

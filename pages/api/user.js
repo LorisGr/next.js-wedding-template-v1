@@ -22,6 +22,12 @@ export default async function handler(req, res) {
       return;
     }
 
+    const totalFamilyMember =
+      parseInt(dataFrontend?.amountKids || 0) +
+      parseInt(dataFrontend?.amountTeenagers || 0) +
+      (dataFrontend?.isWithCompanion ? 1 : 0) +
+      1; // count the guest themselves
+
     const dataToInsert = {
       firstName: dataFrontend?.firstName,
       lastName: dataFrontend?.lastName,
@@ -47,6 +53,11 @@ export default async function handler(req, res) {
       isPeanuts: dataFrontend?.isPeanuts,
       isEggs: dataFrontend?.isEggs,
       isNuts: dataFrontend?.isNuts,
+
+      transportType: dataFrontend?.transportType,
+
+      // add totalFamilyMember field based on number of children and teenagers
+      totalFamilyMember: totalFamilyMember,
     };
 
     // Search for existing user in MongoDB

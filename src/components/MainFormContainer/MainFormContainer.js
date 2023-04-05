@@ -9,6 +9,7 @@ import AdditionalInformationQuestionTitle from "../AdditionalInformationQuestion
 import ChildrenQuestion from "../ChildrenQuestion/ChildrenQuestion";
 import ExistingUserCheck from "../ExistingUserCheck/ExistingUserCheck";
 import "react-toastify/dist/ReactToastify.css";
+import { TransportQuestion } from "../TransportQuestion/TransportQuestion";
 
 /**
  * The main form container for the wedding event RSVP form.
@@ -73,6 +74,8 @@ export const MainFormContainer = ({
                           <FoodAllergicQuestion />
                           {/* Alcohol question */}
                           <AlcoholQuestion />
+                          {/* Transport question */}
+                          <TransportQuestion />
                         </>
                       )}
                       {/*This component displays a message if the user already exists in the database  */}
