@@ -88,7 +88,7 @@ const generatePDF = (data) => {
       },
     };
 
-    doc.autoTable(options);
+    autoTable(doc, options);
 
     const today = new Date();
     const date =
@@ -102,11 +102,7 @@ const generatePDF = (data) => {
     const fileName = "GuestCountAndAllergiesSummary_" + date + ".pdf";
     doc.save(fileName);
   } catch (error) {
-    const body = {
-      log: "generatePdf",
-      errorMessage: error.message,
-    };
-    logFetch(body);
+    console.error("Failed to generate PDF", error);
   }
 };
 

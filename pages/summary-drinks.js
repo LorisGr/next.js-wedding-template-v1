@@ -8,6 +8,9 @@ import connectToMongoDB from "../src/utils/connectToMongoDB";
 import fetchData from "../src/utils/fetchData";
 import getUserSession from "../src/utils/getUserSession";
 
+// Implement as an bonus task
+//const countByFields = (data, groupingFields) => {};
+
 const SummaryDrinks = ({ data, error }) => {
   const [userDataDrinks, setUserDataDrinks] = useState([]);
 
@@ -32,6 +35,34 @@ const SummaryDrinks = ({ data, error }) => {
     () => data?.filter((person) => person.isNonAlcohol === true) || [],
     [data]
   );
+
+  useMemo(() => {
+    /**
+     * {
+     *  "isVodka": 5,
+     *  "isGin": 2,
+     * }
+     */
+    const summary = countByFields(data, [
+      "isVodka",
+      "isGin",
+      "isWhisky",
+      "isBeer",
+      "isNonAlcohol",
+    ]);
+  }, [data]);
+
+  const amountSummary = useMemo(() => {
+    const summary = {
+      vodkaAmount: 0,
+      ginAmount: 0,
+      whiskyAmount: 0,
+      beerAmount: 0,
+      isNonAlcoholAmount: 0,
+    };
+
+    // Implement a way to collect amounts in one loop. You can use whatever, for, data.reduce, data.forEach etc.
+  }, [data]);
 
   useEffect(() => {
     setUserDataDrinks([
