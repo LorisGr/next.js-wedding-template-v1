@@ -40,7 +40,7 @@ const generatePDF = (data) => {
 
     const peanutsPeopleAllergies = data.filter((person) => person.isPeanuts);
     const eggsPeopleAllergies = data.filter((person) => person.isEggs);
-    const nutsPeopleAllergies = data.filter((person) => person.isNuts);
+    const milkPeopleAllergies = data.filter((person) => person.isMilk);
 
     //Transport
     const totalFamilyMembers = {
@@ -80,7 +80,7 @@ const generatePDF = (data) => {
       ],
       ["Number of guests with peanut allergies", peanutsPeopleAllergies.length],
       ["Number of guests with egg allergies", eggsPeopleAllergies.length],
-      ["Number of guests with nut allergies", nutsPeopleAllergies.length],
+      ["Number of guests with milk allergies", milkPeopleAllergies.length],
       [
         "Number of guests who require one-way transport",
         totalFamilyMembers.oneWayTotal,

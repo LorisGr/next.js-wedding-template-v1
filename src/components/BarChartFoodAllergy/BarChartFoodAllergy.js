@@ -7,7 +7,7 @@ const BarChartFoodAllergy = ({
   userDataFoodAllergy,
   peanutsPeopleAllergies,
   eggsPeopleAllergies,
-  nutsPeopleAllergies,
+  milkPeopleAllergies,
 }) => {
   return (
     <>
@@ -25,7 +25,7 @@ const BarChartFoodAllergy = ({
           chartData={userDataFoodAllergy}
           peanutsPeopleAllergies={peanutsPeopleAllergies?.length}
           eggsPeopleAllergies={eggsPeopleAllergies?.length}
-          nutsPeopleAllergies={nutsPeopleAllergies?.length}
+          milkPeopleAllergies={milkPeopleAllergies?.length}
         />
       </Card>
       <InfoAmountCard
@@ -33,7 +33,7 @@ const BarChartFoodAllergy = ({
         cocktails={[
           { name: "Peanuts", amount: peanutsPeopleAllergies },
           { name: "Eggs", amount: eggsPeopleAllergies },
-          { name: "Nuts", amount: nutsPeopleAllergies },
+          { name: "Milk", amount: milkPeopleAllergies },
         ]}
       />
     </>

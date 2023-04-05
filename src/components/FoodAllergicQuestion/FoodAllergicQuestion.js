@@ -26,8 +26,8 @@ export const FoodAllergicQuestion = () => {
           label="Eggs"
         />
         <FormControlLabel
-          control={<CheckboxField name="isNuts" />}
-          label="nuts (e.g., almonds, walnuts, pecans)"
+          control={<CheckboxField name="isMilk" />}
+          label="Milk"
         />
       </FormGroup>
     </Grid>

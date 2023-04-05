@@ -19,8 +19,8 @@ const SummaryFoodAllergy = ({ data, error }) => {
     () => data?.filter((person) => person.isEggs === true) || [],
     [data]
   );
-  const nutsPeopleAllergies = useMemo(
-    () => data?.filter((person) => person.isNuts === true) || [],
+  const milkPeopleAllergies = useMemo(
+    () => data?.filter((person) => person.isMilk === true) || [],
     [data]
   );
 
@@ -38,14 +38,14 @@ const SummaryFoodAllergy = ({ data, error }) => {
       },
       {
         id: 3,
-        food: "Nuts",
-        userGain: nutsPeopleAllergies?.length,
+        food: "Milks",
+        userGain: milkPeopleAllergies?.length,
       },
     ]);
   }, [
     peanutsPeopleAllergies?.length,
     eggsPeopleAllergies?.length,
-    nutsPeopleAllergies?.length,
+    milkPeopleAllergies?.length,
   ]);
 
   const userDataFoodAllergy = {
@@ -103,7 +103,7 @@ const SummaryFoodAllergy = ({ data, error }) => {
               userDataFoodAllergy={userDataFoodAllergy}
               peanutsPeopleAllergies={peanutsPeopleAllergies}
               eggsPeopleAllergies={eggsPeopleAllergies}
-              nutsPeopleAllergies={nutsPeopleAllergies}
+              milkPeopleAllergies={milkPeopleAllergies}
             />
           </Box>
         </LayoutDashboardDesktop>

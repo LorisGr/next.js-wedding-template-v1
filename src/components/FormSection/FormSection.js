@@ -35,7 +35,7 @@ export const FormSection = () => {
 
     isPeanuts: false,
     isEggs: false,
-    isNuts: false,
+    isMilk: false,
 
     isWithCompanion: false,
     firstNameCompanion: "",
@@ -101,7 +101,7 @@ export const FormSection = () => {
 
       isPeanuts: values.isPeanuts,
       isEggs: values.isEggs,
-      isNuts: values.isNuts,
+      isMilk: values.isMilk,
 
       isWithCompanion: values.isWithCompanion,
       firstNameCompanion: values.firstNameCompanion,

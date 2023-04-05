@@ -52,7 +52,7 @@ export default async function handler(req, res) {
 
       isPeanuts: dataFrontend?.isPeanuts,
       isEggs: dataFrontend?.isEggs,
-      isNuts: dataFrontend?.isNuts,
+      isMilk: dataFrontend?.isMilk,
 
       transportType: dataFrontend?.transportType,
 
