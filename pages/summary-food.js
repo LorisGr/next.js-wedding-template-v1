@@ -38,7 +38,7 @@ const SummaryFoodAllergy = ({ data, error }) => {
       },
       {
         id: 3,
-        food: "Milks",
+        food: "Milk",
         userGain: milkPeopleAllergies?.length,
       },
     ]);
