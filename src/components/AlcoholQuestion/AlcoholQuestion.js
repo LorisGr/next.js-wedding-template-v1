@@ -4,13 +4,13 @@ import CheckboxField from "../FormSection/FormsUI/CheckboxField";
 
 export const AlcoholQuestion = () => {
   return (
-    <Grid item xs={12} sx={{ textAlign: "left", mt: "2rem",mb:"3rem" }}>
+    <Grid item xs={12} sx={{ textAlign: "left", mt: "1rem",mb:"1rem" }}>
       <FormLabel
         component="legend"
         sx={{
           color: "#212B36",
           mb: "10px",
-          mt: "10px",
+    
         }}
       >
 

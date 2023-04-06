@@ -9,8 +9,6 @@ export const TransportQuestion = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          mb: "24px",
-          mt: "24px",
         }}
       >
         <FormControl>
@@ -18,7 +16,8 @@ export const TransportQuestion = () => {
             id="demo-radio-buttons-group-label"
             sx={{
               color: "#212B36",
-              mb: "16px",
+              mb: "10px",
+
               textAlign: "left",
             }}
           >

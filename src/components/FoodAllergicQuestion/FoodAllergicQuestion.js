@@ -9,12 +9,12 @@ export const FoodAllergicQuestion = () => {
         component="legend"
         sx={{
           color: "#212B36",
+          mt: "20px",
           mb: "10px",
-          mt: "10px",
+    
         }}
       >
-        {" "}
-        What food Are you allergic to?{" "}
+        Please let us know if you have any food allergies to:
       </FormLabel>
       <FormGroup>
         <FormControlLabel

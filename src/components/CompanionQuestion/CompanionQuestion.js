@@ -7,12 +7,12 @@ const CompanionQuestion = ({ values }) => {
     <Grid item xs={12}>
       <Box
         sx={{
-          mb: "24px",
           mt: "24px",
           textAlign: "left",
         }}
       >
         <Checkbox
+
           name="isWithCompanion"
           label="Will you come with an accompanying person?"
         />
@@ -25,8 +25,9 @@ const CompanionQuestion = ({ values }) => {
                 variant="body1"
                 sx={{
                   textTransform: "none",
-                  fontWeight: "600",
+                  fontWeight: "500",
                   mb: "24px",
+                  mt: "24px",
                   textAlign: "left",
                 }}
               >

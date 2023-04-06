@@ -10,7 +10,7 @@ export const KidsQuestion = () => {
         component="p"
         sx={{
           textTransform: "none",
-          fontWeight: "600",
+          fontWeight: "500",
           mb: "24px",
           textAlign: "left",
         }}
