@@ -26,11 +26,11 @@ const PieChartDrinks = ({
       >
         <PieChart
           chartData={userData}
-          vodkaAmount={vodkaAmount.length}
-          ginAmount={ginAmount.length}
-          whiskyAmount={whiskyAmount.length}
-          beerAmount={beerAmount.length}
-          isNonAlcoholAmount={isNonAlcoholAmount.length}
+          vodkaAmount={vodkaAmount}
+          ginAmount={ginAmount}
+          whiskyAmount={whiskyAmount}
+          beerAmount={beerAmount}
+          isNonAlcoholAmount={isNonAlcoholAmount}
         />
       </Card>
       <InfoAmountCard

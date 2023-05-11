@@ -11,42 +11,50 @@ import getUserSession from "../src/utils/getUserSession";
 const SummaryFoodAllergy = ({ data, error }) => {
   const [userDataAllergyFood, setUserDataAllergyFood] = useState([]);
 
-  const peanutsPeopleAllergies = useMemo(
-    () => data?.filter((person) => person.isPeanuts === true) || [],
-    [data]
-  );
-  const eggsPeopleAllergies = useMemo(
-    () => data?.filter((person) => person.isEggs === true) || [],
-    [data]
-  );
-  const milkPeopleAllergies = useMemo(
-    () => data?.filter((person) => person.isMilk === true) || [],
-    [data]
-  );
+  const amountSummary = useMemo(() => {
+    return data.reduce(
+      (result, person) => {
+        if (person.isPeanuts) {
+          result.isPeanuts++;
+        }
+        if (person.isEggs) {
+          result.isEggs++;
+        }
+        if (person.isMilk) {
+          result.isMilk++;
+        }
+
+        return result;
+      },
+      {
+        isPeanuts: 0,
+        isEggs: 0,
+        isMilk: 0,
+      }
+    );
+  }, [data]);
+
+  console.log("[debug] amountSummaryFood: ", amountSummary);
 
   useEffect(() => {
     setUserDataAllergyFood([
       {
         id: 1,
         food: "Peanuts",
-        userGain: peanutsPeopleAllergies?.length,
+        userGain: amountSummary.isPeanuts,
       },
       {
         id: 2,
         food: "Egg",
-        userGain: eggsPeopleAllergies?.length,
+        userGain: amountSummary.isEggs,
       },
       {
         id: 3,
         food: "Milk",
-        userGain: milkPeopleAllergies?.length,
+        userGain: amountSummary.isMilk,
       },
     ]);
-  }, [
-    peanutsPeopleAllergies?.length,
-    eggsPeopleAllergies?.length,
-    milkPeopleAllergies?.length,
-  ]);
+  }, [amountSummary.isPeanuts, amountSummary.isEggs, amountSummary.isMilk]);
 
   const userDataFoodAllergy = {
     labels: userDataAllergyFood?.map((data) => data?.food),
@@ -101,9 +109,9 @@ const SummaryFoodAllergy = ({ data, error }) => {
           >
             <BarChartFoodAllergy
               userDataFoodAllergy={userDataFoodAllergy}
-              peanutsPeopleAllergies={peanutsPeopleAllergies}
-              eggsPeopleAllergies={eggsPeopleAllergies}
-              milkPeopleAllergies={milkPeopleAllergies}
+              peanutsPeopleAllergies={amountSummary.isPeanuts}
+              eggsPeopleAllergies={amountSummary.isEggs}
+              milkPeopleAllergies={amountSummary.isMilk}
             />
           </Box>
         </LayoutDashboardDesktop>

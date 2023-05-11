@@ -9,7 +9,7 @@ const DetailsInfo = ({ name, amount }) => {
         {name}:
       </Typography>
       <Typography variant="body1" color="primary" sx={{ ml: "5px" }}>
-        {amount.length} {amount.length === 1 ? "person" : "people"}
+        {amount} {amount === 1 ? "person" : "people"} 
       </Typography>
     </Box>
   );

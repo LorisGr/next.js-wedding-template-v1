@@ -8,41 +8,14 @@ import connectToMongoDB from "../src/utils/connectToMongoDB";
 import fetchData from "../src/utils/fetchData";
 import getUserSession from "../src/utils/getUserSession";
 
-// Implement as an bonus task
-//const countByFields = (data, groupingFields) => {};
+// [TODO] Implement 
+// const countByFields = (data, groupingFields) => {};
 
 const SummaryDrinks = ({ data, error }) => {
   const [userDataDrinks, setUserDataDrinks] = useState([]);
 
-  //used useMemo to memoize the results of a function call.
-  const vodkaAmount = useMemo(
-    () => data?.filter((person) => person.isVodka === true) || [],
-    [data]
-  );
-  const ginAmount = useMemo(
-    () => data?.filter((person) => person.isGin === true) || [],
-    [data]
-  );
-  const whiskyAmount = useMemo(
-    () => data?.filter((person) => person.isWhisky === true) || [],
-    [data]
-  );
-  const beerAmount = useMemo(
-    () => data?.filter((person) => person.isBeer === true) || [],
-    [data]
-  );
-  const isNonAlcoholAmount = useMemo(
-    () => data?.filter((person) => person.isNonAlcohol === true) || [],
-    [data]
-  );
-
+  /** [TODO] 
   useMemo(() => {
-    /**
-     * {
-     *  "isVodka": 5,
-     *  "isGin": 2,
-     * }
-     */
     const summary = countByFields(data, [
       "isVodka",
       "isGin",
@@ -50,54 +23,84 @@ const SummaryDrinks = ({ data, error }) => {
       "isBeer",
       "isNonAlcohol",
     ]);
+    // summary:
+    // {
+    //    "isVodka": 5,
+    //    "isGin": 2,
+    //    "isWhisky": 0,
+    //    "isBeer": 100,
+    //    "isNonAlcohol": 0,
+    // }
   }, [data]);
+*/
 
   const amountSummary = useMemo(() => {
-    const summary = {
-      vodkaAmount: 0,
-      ginAmount: 0,
-      whiskyAmount: 0,
-      beerAmount: 0,
-      isNonAlcoholAmount: 0,
-    };
+    return data.reduce(
+      (result, person) => {
+        if (person.isVodka) {
+          result.vodkaAmount++;
+        }
+        if (person.isGin) {
+          result.ginAmount++;
+        }
+        if (person.isWhisky) {
+          result.whiskyAmount++;
+        }
+        if (person.isBeer) {
+          result.beerAmount++;
+        }
+        if (person.isNonAlcohol) {
+          result.isNonAlcoholAmount++;
+        }
 
-    // Implement a way to collect amounts in one loop. You can use whatever, for, data.reduce, data.forEach etc.
+        return result;
+      },
+      {
+        vodkaAmount: 0,
+        ginAmount: 0,
+        whiskyAmount: 0,
+        beerAmount: 0,
+        isNonAlcoholAmount: 0,
+      }
+    );
   }, [data]);
+
+  console.log("[debug] amountSummaryDrinks: ", amountSummary);
 
   useEffect(() => {
     setUserDataDrinks([
       {
         id: 1,
         drink: "Vodka cocktails",
-        userGain: vodkaAmount.length,
+        userGain: amountSummary.vodkaAmount,
       },
       {
         id: 2,
         drink: "Gin cocktails",
-        userGain: ginAmount.length,
+        userGain: amountSummary.ginAmount,
       },
       {
         id: 3,
         drink: "Whisky cocktails",
-        userGain: whiskyAmount.length,
+        userGain: amountSummary.whiskyAmount,
       },
       {
         id: 4,
         drink: "Beer",
-        userGain: beerAmount.length,
+        userGain: amountSummary.beerAmount,
       },
       {
         id: 5,
         drink: "non-alcoholic cocktail",
-        userGain: isNonAlcoholAmount.length,
+        userGain: amountSummary.isNonAlcoholAmount,
       },
     ]);
   }, [
-    vodkaAmount.length,
-    ginAmount.length,
-    whiskyAmount.length,
-    beerAmount.length,
-    isNonAlcoholAmount.length,
+    amountSummary.vodkaAmount,
+    amountSummary.ginAmount,
+    amountSummary.whiskyAmount,
+    amountSummary.beerAmount,
+    amountSummary.isNonAlcoholAmount,
   ]);
 
   const userData = {
@@ -152,11 +155,11 @@ const SummaryDrinks = ({ data, error }) => {
           >
             <PieChartDrinks
               userData={userData}
-              vodkaAmount={vodkaAmount}
-              ginAmount={ginAmount}
-              whiskyAmount={whiskyAmount}
-              beerAmount={beerAmount}
-              isNonAlcoholAmount={isNonAlcoholAmount}
+              vodkaAmount={amountSummary.vodkaAmount}
+              ginAmount={amountSummary.ginAmount}
+              whiskyAmount={amountSummary.whiskyAmount}
+              beerAmount={amountSummary.beerAmount}
+              isNonAlcoholAmount={amountSummary.isNonAlcoholAmount}
             />
           </Box>
         </LayoutDashboardDesktop>
