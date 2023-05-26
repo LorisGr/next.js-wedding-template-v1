@@ -12,7 +12,7 @@ Additional features, such as a budget tracker and guest list manager, will be ad
 - Improve user experience
 - Adding pagination functionality to the tables
 - Adding filtering functionality to the tables to make data more accessible.
-- Improve user experience by enhancing UI/UX in the tables displaying data.
+- Improve user experience by enhancing UI/UX in the tables displaying data. 
 
 ## DEMO Link
 

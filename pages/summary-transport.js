@@ -1,4 +1,5 @@
-import { Typography } from "@mui/material";
+import { useState } from "react";
+import { Typography, Button, Box } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -16,7 +17,9 @@ import fetchData from "../src/utils/fetchData";
 import getUserSession from "../src/utils/getUserSession";
 
 const SummaryTransport = ({ data, error }) => {
+  const [currentPage, setCurrentPage] = useState(1);
   const theme = useTheme();
+
   const comingGuests = data
     ? data.filter((guest) => guest.isComing === "Yes")
     : [];
@@ -25,6 +28,26 @@ const SummaryTransport = ({ data, error }) => {
   const isSmallTabletScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   console.log("comingGuests", comingGuests);
+
+  // PAGINATION
+  const itemsPerPage = 10; // Change this value to adjust the number of items per page
+
+  // Calculate the indexes of the first and last items on the current page
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
+  // Get the paginated data for the current page
+  const paginatedGuests = comingGuests.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Function to handle navigating to the previous page
+  const goToPreviousPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  // Function to handle navigating to the next page
+  const goToNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
 
   const getTransportOptionLabel = (transportOption) => {
     switch (transportOption) {
@@ -133,7 +156,7 @@ const SummaryTransport = ({ data, error }) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {comingGuests.map((row, index) => (
+                  {paginatedGuests.map((row, index) => (
                     <TableRow key={index}>
                       <TableCell>{index + 1}</TableCell>
                       <TableCell>{row.firstName}</TableCell>
@@ -158,6 +181,36 @@ const SummaryTransport = ({ data, error }) => {
               </Table>
             </TableContainer>
           </Paper>
+          <Box sx={{mt:"2rem"}}>
+            <Button
+              onClick={goToPreviousPage}
+              disabled={currentPage === 1}
+              sx={{
+                marginRight: 2,
+                backgroundColor: theme.palette.primary.main,
+                color: "#FFF",
+                "&:hover": {
+                  backgroundColor: theme.palette.primary.dark,
+                },
+              }}
+            >
+              Previous
+            </Button>
+
+            <Button
+              onClick={goToNextPage}
+              disabled={indexOfLastItem >= comingGuests.length}
+              sx={{
+                backgroundColor: theme.palette.primary.main,
+                color: "#FFF",
+                "&:hover": {
+                  backgroundColor: theme.palette.primary.dark,
+                },
+              }}
+            >
+              Next
+            </Button>
+          </Box>
         </LayoutDashboardDesktop>
       )}
     </>
