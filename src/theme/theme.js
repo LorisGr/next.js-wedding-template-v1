@@ -2,11 +2,20 @@ import { createTheme } from "@mui/material/styles";
 import typography from "./typography";
 
 // ----------------------------------------------------------------------
+const breakpoints = {
+  values: {
+    xs: 0,
+    sm: 600,
+    md: 960,
+    lg: 1280,
+    xl: 1920,
+  },
+};
 
 const theme = createTheme({
   mode: "light",
   typography: typography,
-
+  breakpoints: breakpoints,
   palette: {
     primary: {
       main: "#FA541A",
@@ -26,6 +35,7 @@ const theme = createTheme({
     error: {
       main: "#f44336",
     },
+
   },
 });
 

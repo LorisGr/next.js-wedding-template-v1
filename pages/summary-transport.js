@@ -27,7 +27,9 @@ const SummaryTransport = ({ data, error }) => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const isSmallTabletScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-  console.log("comingGuests", comingGuests);
+  //console.log("comingGuests", comingGuests);
+
+  // ----------------------------------------------------------------------
 
   // PAGINATION
   const itemsPerPage = 10; // Change this value to adjust the number of items per page
@@ -39,12 +41,10 @@ const SummaryTransport = ({ data, error }) => {
   // Get the paginated data for the current page
   const paginatedGuests = comingGuests.slice(indexOfFirstItem, indexOfLastItem);
 
-  // Function to handle navigating to the previous page
   const goToPreviousPage = () => {
     setCurrentPage((prevPage) => prevPage - 1);
   };
 
-  // Function to handle navigating to the next page
   const goToNextPage = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
@@ -99,6 +99,7 @@ const SummaryTransport = ({ data, error }) => {
             sx={{
               overflowX: "auto",
               maxHeight: isSmallScreen ? "100%" : 840,
+              width: isSmallScreen ? "auto" : "85%",
             }}
           >
             <TableContainer
@@ -170,7 +171,7 @@ const SummaryTransport = ({ data, error }) => {
                       </TableCell>
                       <TableCell
                         sx={{
-                          textAlign: "center",
+                          textAlign: "left",
                         }}
                       >
                         {row.totalFamilyMember}
@@ -181,7 +182,7 @@ const SummaryTransport = ({ data, error }) => {
               </Table>
             </TableContainer>
           </Paper>
-          <Box sx={{mt:"2rem"}}>
+          <Box sx={{ mt: "1rem" }}>
             <Button
               onClick={goToPreviousPage}
               disabled={currentPage === 1}
