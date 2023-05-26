@@ -49,6 +49,9 @@ const SummaryTransport = ({ data, error }) => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
 
+  // Math.ceil -indicating that we need a total of pages to display all the guests.We round up to the nearest whole number,
+  const totalPages = Math.ceil(comingGuests.length / itemsPerPage);
+
   const getTransportOptionLabel = (transportOption) => {
     switch (transportOption) {
       case "oneWayTransport":
@@ -183,6 +186,9 @@ const SummaryTransport = ({ data, error }) => {
             </TableContainer>
           </Paper>
           <Box sx={{ mt: "1rem" }}>
+            <Typography variant="body2" sx={{ marginBottom: 1 }}>
+              Page {currentPage} of {totalPages}
+            </Typography>
             <Button
               onClick={goToPreviousPage}
               disabled={currentPage === 1}
@@ -195,7 +201,7 @@ const SummaryTransport = ({ data, error }) => {
                 },
               }}
             >
-              Previous
+              Previous Page
             </Button>
 
             <Button
@@ -209,7 +215,7 @@ const SummaryTransport = ({ data, error }) => {
                 },
               }}
             >
-              Next
+              Next Page
             </Button>
           </Box>
         </LayoutDashboardDesktop>

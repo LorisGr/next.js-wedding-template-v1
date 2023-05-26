@@ -46,6 +46,9 @@ const ConfirmedGuest = ({ data, error }) => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
 
+  // Math.ceil -indicating that we need a total of pages to display all the guests.We round up to the nearest whole number,
+  const totalPages = Math.ceil(comingGuests.length / itemsPerPage);
+
   return (
     <>
       {error ? (
@@ -195,6 +198,9 @@ const ConfirmedGuest = ({ data, error }) => {
             </TableContainer>
           </Paper>
           <Box sx={{ mt: "1rem" }}>
+            <Typography variant="body2" sx={{ marginBottom: 1 }}>
+              Page {currentPage} of {totalPages}
+            </Typography>
             <Button
               onClick={goToPreviousPage}
               disabled={currentPage === 1}
@@ -207,7 +213,7 @@ const ConfirmedGuest = ({ data, error }) => {
                 },
               }}
             >
-              Previous
+              Previous Page
             </Button>
 
             <Button
@@ -221,7 +227,7 @@ const ConfirmedGuest = ({ data, error }) => {
                 },
               }}
             >
-              Next
+              Next Page
             </Button>
           </Box>
         </LayoutDashboardDesktop>
