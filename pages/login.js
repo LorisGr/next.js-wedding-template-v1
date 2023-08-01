@@ -1,6 +1,7 @@
 import {
   Button,
   Grid,
+  Typography
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState, useEffect } from "react";
@@ -86,6 +87,44 @@ const LoginPage = () => {
           width: "100%",
         }}
       >
+             {/* Sample section to inform users about testing with provided credentials */}
+        {/* Sample section to inform users about testing with provided credentials */}
+        <Box
+          sx={{
+            width: "100%",
+            textAlign: "center",
+            backgroundColor: "#f1f1f1",
+            padding: "10px",
+            marginBottom: "20px",
+            "@media (min-width: 600px)": {
+              width: "50%",
+              marginLeft: "auto",
+              marginRight: "auto",
+            },
+          }}
+        >
+          <Typography variant="body1" component="p">
+            <strong>Testing the App with Provided Credentials:</strong>
+          </Typography>
+          <Typography variant="body1" component="p">
+            To explore the dashboard, you can use the following credentials:
+            <br />
+            <strong>Username:</strong> Maciek
+            <br />
+            <strong>Password:</strong> secretpassword
+          </Typography>
+          <Typography
+            variant="body1"
+            component="p"
+            sx={{
+              "@media (min-width: 600px)": {
+                width: "100%",
+              },
+            }}
+          >
+            Please note that these credentials are provided for testing purposes.
+          </Typography>
+        </Box>
         <Formik
           initialValues={{ username: "", password: "" }}
           validationSchema={validationSchema}
