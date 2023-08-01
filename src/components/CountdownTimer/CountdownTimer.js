@@ -16,7 +16,7 @@ const AnimationWatch = () => {
 export const CountdownTimer = () => {
   // '10/05/2022 17:47' month/day/year time
   const localOffset = new Date().getTimezoneOffset() * 60 * 1000; // get local timezone offset in milliseconds
-  const countdown = useCountdown(new Date("07/08/2023 15:00") - localOffset);
+  const countdown = useCountdown(new Date("12/08/2023 15:00") - localOffset);
 
   // check if the wedding day has arrived
   const isWeddingDay = countdown.days === "0";
@@ -61,7 +61,7 @@ export const CountdownTimer = () => {
                 fontSize: { xs: "2.4rem", md: "3.1rem" },
               }}
             >
-              8 July 2023
+              8 December 2023
             </Typography>
             <Typography
               variant="body1"
