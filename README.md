@@ -1,39 +1,28 @@
 ## Digital Wedding Invitations (Paperless Wedding Invitations)
 
-This project is a full-stack web application that aims to assist couples in planning and organizing their wedding day. Built using Next.js and MongoDB, it features a user-friendly form that collects all the necessary information based on the couple's specific requirements, such as the number of guests and any special requests or preferences.
+This project is a full-stack web application that aims to assist couples in planning and organizing their wedding day. Built using Next.js and MongoDB and Firebase, it features a user-friendly form that collects all the necessary information based on the couple's specific requirements, such as the number of guests and any special requests or preferences.
 
-The landing page is designed to be intuitive and easy to use, allowing couples to provide all the necessary information with ease. Once the form is completed, the collected information is displayed in a dashboard on a separate URL. This allows couples to review and keep track of any changes or updates. The dashboard is user-friendly and easy to navigate, making it simple for couples to manage their wedding details.
-
-Additional features, such as a budget tracker and guest list manager, will be added in the future to solve problems associated with traditional paper invitations.
+The **landing page** is designed to be intuitive and easy to use, allowing couples to provide all the necessary information with ease. Once the form is completed, the collected information is displayed in a **dashboard** on a separate URL. This allows couples to review and keep track of any changes or updates. The dashboard is user-friendly and easy to navigate, making it simple for couples to manage their wedding details.
 
 ## Upcoming plans include:
 
-- Refactor code to make reusable functions
-- Improve user experience
-- Adding pagination functionality to the tables
-- Adding filtering functionality to the tables to make data more accessible.
-- Improve user experience by enhancing UI/UX in the tables displaying data. 
-
+- plan to implement Redux for enhanced state management
 ## DEMO Link
 
 [Landing Page](https://ditialweddinginivitation.netlify.app/)
 
-- The most important feature on this page is the form that will allow you to collect the most important data (based on requirements)
-- Test the form by sending fake data and see how it works by going too [Here ](https://ditialweddinginivitation.netlify.app/invitations)
+- The landing page contains all the essential sections required for wedding invitations
+- The main feature of the page is a form that collects crucial data 
+- **Feel free to test the form by submitting fake data to see how it works**
 
-[Dashboard- Summary page ](https://ditialweddinginivitation.netlify.app/invitations)
+[Login Page-Dashboard-Summary page ](https://ditialweddinginivitation.netlify.app/login)
 
-- Currently only available for desktop, a mobile version will be added soon
-- A sidebar is similar to the one on GitLab pages
-- Check the results collected from the form
-- A simple login page with password and login functionality is planned for future development
-- A button is added that allows the invitation owner to download a PDF file
+- The login page allows users to access the summary dashboard with a username and password
+- The responsive dashboard includes a sidebar similar to GitLab pages
+- You can view the collected data from the form in a user-friendly table or cards 
+- Additionally, there is a button provided to download a PDF containing all the collected form data
 
-[Login Page ](https://ditialweddinginivitation.netlify.app/login)
 
-- The component displays a form for users to input their username and password, and a submit button to log in.
-- The component makes a POST request to an API endpoint 'api/login' with the entered username and password, and upon a successful response,
-- It sets a cookie and redirects the user to the '/invitations' page.
 
 ### API endpoint 'api/login'
 
