@@ -1,6 +1,6 @@
 ## Digital Wedding Invitations (Paperless Wedding Invitations)
 
-This project is a full-stack web application that aims to assist couples in planning and organizing their wedding day. Built using Next.js and MongoDB and Firebase, it features a user-friendly form that collects all the necessary information based on the couple's specific requirements, such as the number of guests and any special requests or preferences.
+This project is a full-stack web application that aims to assist couples in planning and organizing their wedding day. Built using Next.js, MongoDB and Firebase, it features a user-friendly form that collects all the necessary information based on the couple's specific requirements, such as the number of guests and any special requests or preferences.
 
 The **landing page** is designed to be intuitive and easy to use, allowing couples to provide all the necessary information with ease. Once the form is completed, the collected information is displayed in a **dashboard** on a separate URL. This allows couples to review and keep track of any changes or updates. The dashboard is user-friendly and easy to navigate, making it simple for couples to manage their wedding details.
 
