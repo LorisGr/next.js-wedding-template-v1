@@ -48,7 +48,6 @@ The landing page provides basic information about the event. In the future, I pl
 - This project is being actively improved on a daily basis
 
 
+![image](https://github.com/CarolinaFledgling/next.js-wedding-template-v1/assets/47687566/5854e601-e126-4fc3-93a7-9fafee4e324d)
 
-![image 1](https://user-images.githubusercontent.com/47687566/199193895-4b9838a3-d3fb-462f-af01-13edae7478ff.jpg)
 
-![image](https://user-images.githubusercontent.com/47687566/199197621-ba202f50-3ac1-4a63-9c3b-98489671487d.png)
