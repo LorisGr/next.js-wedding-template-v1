@@ -49,7 +49,7 @@ The landing page provides basic information about the event. In the future, I pl
 
 
 
-**Feel free to test**
+## Feel free to test
 
 
 ![image](https://github.com/CarolinaFledgling/next.js-wedding-template-v1/assets/47687566/277df8ae-9483-4597-82a4-c35bd30e8e00)
