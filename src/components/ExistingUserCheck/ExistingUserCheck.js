@@ -7,12 +7,11 @@ const ExistingUserCheck = ({ isExistingUser, isLoading }) => {
       {/* Display a message if the user already exists in the database */}
       {isExistingUser ? (
         <Typography variant="body1" sx={{ color: "#FA541c" }}>
-          Thank you for your inquiry. We have checked our database and the email
-          address provided is already registered for our wedding event. If you
-          have any questions or concerns, please let us know.
+          Sembra che tu abbia già compilato il form e tu sia già registrato!
+          Se hai altri dubbi contattaci, se partecipi sicuramente troverai il modo!
         </Typography>
       ) : (
-        <Button isLoading={isLoading}>Submit form</Button>
+        <Button isLoading={isLoading}>Conferma</Button>
       )}
     </Grid>
   );

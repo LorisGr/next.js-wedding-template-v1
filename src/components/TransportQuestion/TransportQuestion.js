@@ -21,8 +21,8 @@ export const TransportQuestion = () => {
               textAlign: "left",
             }}
           >
-            Would you like us to arrange transportation for you from the church
-            to the banquet hall?
+            Vuoi pianificare un passaggio dalla chiesa
+            alla zona evento?
           </FormLabel>
           <TransportRadioFields name="transportType" />
         </FormControl>

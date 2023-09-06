@@ -89,9 +89,9 @@ export const Header = ({ imageUrlHeader }) => {
                 marginBottom: { xs: "2rem", sm: "2rem", md: "3rem" },
               }}
             >
-              Welcome to our digital wedding invitation! We&apos;re looking
-              forward to celebrating our special day with you. Please join us as
-              we celebrate our wedding, and use form to confirm your attendance.
+              Benvenuti sul nostro sito, stiamo per sposarci e saremmo lieti
+              di celebrare con te il nostro grande giorno! Perfavore compila
+              il form e facci sapere cosa farai!.
             </Typography>
 
             <Button
@@ -106,7 +106,7 @@ export const Header = ({ imageUrlHeader }) => {
               color="primary"
               onClick={() => router.push("#confirm-attendance")}
             >
-              Confirm Attendance
+              Conferma Partecipazione
             </Button>
           </Box>
           <Box

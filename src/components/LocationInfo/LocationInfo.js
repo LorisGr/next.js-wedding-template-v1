@@ -31,7 +31,7 @@ export const LocationInfo = () => {
         <Grid container justifyContent="space-between">
           <Grid item xs={12} md={6} lg={6}>
             <Typography variant="h3" sx={{ mb: "2.5rem", textAlign: "center" }}>
-              Join us for the wedding{" "}
+              Partecipa con noi al nostro matrimonio!{" "}
             </Typography>
             <Box
               sx={{
@@ -56,7 +56,7 @@ export const LocationInfo = () => {
                   textAlign: "center",
                 }}
               >
-                The Wedding will take place in Saint Pro-Cathedral 83
+                Il matrimonio sarà in Saint Pro-Cathedral 83
                 Marlborough Street, Oslo at 10.00 a.m
               </Typography>
               <Typography
@@ -67,7 +67,7 @@ export const LocationInfo = () => {
                   mt: "1rem",
                 }}
               >
-                Up to three hours free parking is available in town
+                Parcheggio disponibile in città
               </Typography>
               <Link href="https://goo.gl/maps/3q59iGCWT1WseYMK7">
                 <Typography
@@ -81,7 +81,7 @@ export const LocationInfo = () => {
                     
                   }}
                 >
-                  see the map
+                  guarda sulla mappa
                 </Typography>
               </Link>
             </Box>
@@ -89,7 +89,7 @@ export const LocationInfo = () => {
 
           <Grid item xs={12} md={6} lg={6}>
             <Typography variant="h3" sx={{ mb: "2.5rem", textAlign: "center" }}>
-              Join us for the party
+              Partecipa con noi
             </Typography>
             <Box
               sx={{
@@ -114,7 +114,7 @@ export const LocationInfo = () => {
                   mt: "1rem",
                 }}
               >
-                Dinner and dancing will take place in Castleknock Hotel &
+                Cena e danze prenderanno atto in Castleknock Hotel &
                 Country Club Castleknock, Oslo
               </Typography>
               <Typography
@@ -125,7 +125,7 @@ export const LocationInfo = () => {
                   mt: "1rem",
                 }}
               >
-                Up to three hours free parking is available in town
+                Parcheggio disponibile in città
               </Typography>
               <Link href="https://goo.gl/maps/3q59iGCWT1WseYMK7">
                 <Typography
@@ -136,7 +136,7 @@ export const LocationInfo = () => {
                     textDecoration: "underline",
                   }}
                 >
-                  see the map
+                  guarda la mappa
                 </Typography>
               </Link>
             </Box>

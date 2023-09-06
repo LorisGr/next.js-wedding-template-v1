@@ -31,8 +31,8 @@ const CompanionQuestion = ({ values }) => {
                   textAlign: "left",
                 }}
               >
-                Wonderful! 😊 Could you please provide the first and last name
-                of your companion?
+                Magnifico! 😊 Puoi dirci perfavore nome e cognome
+                del tuo partner?
               </Typography>
             </Grid>
             <Grid item xs={6}>

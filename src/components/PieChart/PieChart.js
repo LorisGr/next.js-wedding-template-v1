@@ -8,7 +8,7 @@ export const PieChart = ({ chartData }) => {
   return (
     <>
       <Typography variant="h3" sx={{ mb: "2rem" }}>
-        Summary Drinks
+        Sommario Drink
       </Typography>
       <Pie data={chartData} />
     </>

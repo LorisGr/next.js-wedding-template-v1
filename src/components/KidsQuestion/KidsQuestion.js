@@ -15,9 +15,9 @@ export const KidsQuestion = () => {
           textAlign: "left",
         }}
       >
-        Great! 😊 We&apos;re hiring a pro to keep the kids entertained while
-        we dance the night away!💃🕺 Just a heads up, we want to get an idea of
-        how many mini guests to expect.
+        Ottimp! 😊 Ci sarà dell'animazione solo per i pupetti
+        così potremo ballare tutta la notte!💃🕺 Solo per sapere, vogliamo capire quanti
+        mini ospiti ci saranno.
       </Typography>
       <Box
         sx={{
@@ -36,8 +36,8 @@ export const KidsQuestion = () => {
               color: "#212B36",
             }}
           >
-            Could you please let us know the number of children
-            <span style={{ fontWeight: "bold" }}> under 3 </span>?
+            Quanti bambini porterai?
+            <span style={{ fontWeight: "bold" }}> Meno di 3 </span>?
           </FormLabel>
           <KidsRadioFields name="amountKids" />
         </FormControl>

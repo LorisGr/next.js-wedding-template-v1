@@ -14,7 +14,7 @@ export const AlcoholQuestion = () => {
         }}
       >
 
-        What is your most liked alcoholic drink ?
+        Qual'è il tuo alcolico preferito?
       </FormLabel>
       <FormGroup>
         <FormControlLabel
@@ -31,7 +31,7 @@ export const AlcoholQuestion = () => {
         />
         <FormControlLabel
           control={<CheckboxField name="isBeer" />}
-          label="Beer"
+          label="Birra"
         />
         <FormControlLabel
           control={<CheckboxField name="isNonAlcohol" />}

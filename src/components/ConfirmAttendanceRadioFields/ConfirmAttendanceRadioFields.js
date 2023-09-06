@@ -27,11 +27,11 @@ const ConfirmAttendanceRadioFields = ({ name }) => {
         name="radio-buttons-group"
         {...configTextfield}
       >
-        <FormControlLabel value="Yes" control={<Radio />} label="Yes, I will" />
+        <FormControlLabel value="Si" control={<Radio />} label="Si, ci sarò!" />
         <FormControlLabel
           value="No"
           control={<Radio />}
-          label="Unfortunately, I will not"
+          label="Purtroppo, non posso!"
         />
       </RadioGroup>
       <Typography

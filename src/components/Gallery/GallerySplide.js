@@ -52,7 +52,7 @@ export default function GallerySplide({ imageUrls }) {
             fontSize: { xs: "2.4rem", md: "3.1rem" },
           }}
         >
-          Our Memories
+          Un pò di noi
         </Typography>
 
         <Splide

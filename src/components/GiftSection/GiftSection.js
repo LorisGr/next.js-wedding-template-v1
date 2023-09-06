@@ -40,7 +40,7 @@ export const GiftSection = () => {
                 fontSize: { xs: "2.4rem", md: "3.1rem" },
               }}
             >
-              Inspiring Wedding Gift Ideas
+              Qualche idea regalo
             </Typography>
             <Typography
               variant="body1"
@@ -49,8 +49,8 @@ export const GiftSection = () => {
                 margin: "0 auto",
               }}
             >
-              If you&apos;re wondering what to give us, below are some gift
-              suggestions
+              Se sei in difficoltà e non sai cosa fare, ecco qualche 
+              suggerimento
             </Typography>
             <Box
               sx={{

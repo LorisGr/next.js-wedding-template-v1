@@ -22,42 +22,42 @@ import Image from "next/image";
 
 const CORE_VALUES = [
   {
-    year: "May 2018",
+    year: "Maggio 2018",
     title: "From Swipe to Soul Mate",
-    description: "We met in the modern way by swiping right on Tinder (swoon!) ",
+    description: "Ci siao conosciuti in modo moderno, su Tinder!(swoon!) ",
     img: phoneDate,
   },
   {
-    year: "December 2019",
+    year: "Dicembre 2019",
     title: "First date",
     description:
-      "Our first date was off to a great start, until it started pouring rain while we were enjoying our outdoor dinner.",
+      "Il nostro primo appuntamento è stato un bello start, ha iniziato a piovere con un atmosfera romantica e abbiamo cenato fuori!",
     img: dinner,
   },
   {
     year: "June 2020",
     title: "Adventuring Together",
     description:
-      "We traveled extensively—backpacking through Europe in Italy. One of our favorite memories!",
+      "Abbiamo viaggiato per tutta Italia ed Europa, abbiamo costruito dei ricordi memorabili!",
     img: travelImg,
   },
   {
     year: "April 2021",
     title: "We moved in together",
     description:
-      "After moving, we discovered that.. we only need a small amount of furniture to feel comfortable.",
+      "Dopo un pò, abbiamo deciso di comprare casa e trasferirci a vivere insieme!",
     img: flameEcology,
   },
   {
     year: "July 2022",
     title: "I said YES !!",
-    description: "During a sunset walk on the beach, Lucas got down on one knee.",
+    description: "Durante un tramonto in spiaggia sul mare, non ci credevo!",
     img: engagement,
   },
   {
     year: "April 2023",
     title: "Wedding day",
-    description: `We're so excited for you to join us as we say "I do" at our wedding. See you soon!`,
+    description: `Siamo molto eccitati all'idea di questo giorno, partecipa anche tu a questo momento unico!`,
     img: flameWedding,
   },
 ];
@@ -104,7 +104,7 @@ export const HistorySection = () => {
                 mb: "5rem",
               }}
             >
-              Our Story
+              La nostra storia
             </Typography>
           </Stack>
 

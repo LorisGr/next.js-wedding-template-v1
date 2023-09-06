@@ -14,7 +14,7 @@ export const FoodAllergicQuestion = () => {
     
         }}
       >
-        Please let us know if you have any food allergies to:
+        Perfavore facci sapere se sei allergico a:
       </FormLabel>
       <FormGroup>
         <FormControlLabel
@@ -23,11 +23,26 @@ export const FoodAllergicQuestion = () => {
         />
         <FormControlLabel
           control={<CheckboxField name="isEggs" />}
-          label="Eggs"
+          label="Uova"
         />
         <FormControlLabel
           control={<CheckboxField name="isMilk" />}
-          label="Milk"
+          label="Latte"
+        />
+      </FormGroup>
+      <FormControlLabel
+          control={<CheckboxField name="isCereal" />}
+          label="Celiaco"
+        />
+      </FormGroup>
+      <FormControlLabel
+      control={<CheckboxField name="isVegan" />}
+      label="Vegetariano"
+    />
+  </FormGroup>
+  <FormControlLabel
+          control={<CheckboxField name="isVegetarian" />}
+          label="Vegetariano"
         />
       </FormGroup>
     </Grid>

@@ -5,7 +5,7 @@ export const HeaderForm = () => {
   return (
     <>
       <Typography variant="h2" sx={{ mb: "3rem" }}>
-        Confirm your attendance
+        Conferma la partecipazione
       </Typography>
       <Typography
         variant="body1"
@@ -15,7 +15,7 @@ export const HeaderForm = () => {
           color: "#e74c3c",
         }}
       >
-        Wedding day will be 8 July 2023
+        Il matrimonio sarà il 23 Maggio
       </Typography>
       <Typography
         variant="body1"
@@ -26,8 +26,8 @@ export const HeaderForm = () => {
           mt: "2rem",
         }}
       >
-        Join us as we celebrate our wedding, and use form to confirm your
-        attendance.
+        Resta con noi durante il nostro grande giorno! Conferma la
+        partecipazione.
       </Typography>
       <Typography
         variant="body1"
@@ -36,7 +36,7 @@ export const HeaderForm = () => {
           margin: "0 auto",
         }}
       >
-        Please confirm your attendance no later than{" "}
+        Perfavore conferma l'invito prima del{" "}
       </Typography>
       <Typography
         variant="body1"
@@ -47,7 +47,7 @@ export const HeaderForm = () => {
           fontWeight: "bold",
         }}
       >
-        24th March 2023
+        22 Marzo 2023
       </Typography>
     </>
   );

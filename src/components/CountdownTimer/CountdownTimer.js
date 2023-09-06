@@ -47,7 +47,7 @@ export const CountdownTimer = () => {
                 mt: "5rem",
               }}
             >
-              The countdown is over! Today is our wedding day!{" "}
+              Il countdown è terminato. Oggi è il grande giorno!{" "}
             </Typography>
           </>
         ) : (
@@ -61,7 +61,7 @@ export const CountdownTimer = () => {
                 fontSize: { xs: "2.4rem", md: "3.1rem" },
               }}
             >
-              8 December 2023
+              8 Dicembre 2023
             </Typography>
             <Typography
               variant="body1"
@@ -70,8 +70,8 @@ export const CountdownTimer = () => {
                 margin: "0 auto",
               }}
             >
-              The sweetest day of our life is coming up, and we will be really
-              excited to see you there.
+              Il giorno più bello della nostra vita sta arrivando. Siamo veramente 
+              felici di vedervi lì.
             </Typography>
             <Box sx={{ display: "flex", justifyContent: "center", mt: "5rem" }}>
               {TimeBox(countdown.days, "Days")}
